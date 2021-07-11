@@ -22,7 +22,7 @@ public class CreateInstructorDemo {
 
         // create session factory
         SessionFactory factory = new Configuration()
-                .configure("/hb_03_one_to_many_biDirectional/hibernate.cfg.xml")
+                .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
                 .addAnnotatedClass(Course.class)
