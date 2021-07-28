@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package T1_C20_Hibernate_Config_With_Annotations;
+package T1_C20_Hibernate_Config_With_Annotations_Entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -78,5 +79,5 @@ public class Student {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + '}';
     }
 
-    
+
 }
