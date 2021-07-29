@@ -62,7 +62,8 @@ public class CreateCoursesDemo {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         } finally {
-
+            session.close();
+            factory.close();
         }
     }
 

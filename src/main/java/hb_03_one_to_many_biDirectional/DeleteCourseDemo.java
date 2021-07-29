@@ -53,7 +53,8 @@ public class DeleteCourseDemo {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         } finally {
-
+            session.close();
+            factory.close();
         }
     }
 

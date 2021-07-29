@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hb_03_one_to_many_biDirectional;
+package T1_C23_one_to_one_uni;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author huynq
  */
-public class GetInstructorCoursesDemo {
+public class MainCreateOneToOneUni {
 
     /**
      * @param args the command line arguments
@@ -23,10 +23,9 @@ public class GetInstructorCoursesDemo {
         // create Session factory
         SessionFactory factory
                 = new Configuration()
-                        .configure("hibernate.cfg.xml")
+                        .configure("hibernate.cfg_C23_uni.xml")
                         .addAnnotatedClass(Instructor.class)
                         .addAnnotatedClass(InstructorDetail.class)
-                        .addAnnotatedClass(Course.class)
                         .buildSessionFactory();
 
         // create session
@@ -34,17 +33,23 @@ public class GetInstructorCoursesDemo {
 
         try {
 
+            // create objects
+            Instructor tempInstructor
+                    = new Instructor("John", "Doe", "jdoe@gmail.com");
+
+            InstructorDetail tempInstructorDetail
+                    = new InstructorDetail("http://www.youtube", "Love to code");
+
+            // associate the objects
+            tempInstructor.setInstructorDetail(tempInstructorDetail);
+
             // start a transaction
             session.beginTransaction();
 
-            // get the instructor from db
-            int id = 1;
-            Instructor instructor =
-                    session.get(Instructor.class, id);
-
-            System.out.println("Instructor: " + instructor);
-            // get courses for the instructor
-            System.out.println("Courses: " + instructor.getCourses());
+            // save the instructor
+            // Note: this will also save the details object
+            System.out.println("Saving instructor: " + tempInstructor);
+            session.save(tempInstructor);
 
             // commit transaction
             session.getTransaction().commit();
@@ -54,7 +59,6 @@ public class GetInstructorCoursesDemo {
         } catch (Exception e) {
             e.printStackTrace(System.err);
         } finally {
-            session.close();
             factory.close();
         }
     }
