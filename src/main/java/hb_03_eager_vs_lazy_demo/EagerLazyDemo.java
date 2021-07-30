@@ -43,6 +43,7 @@ public class EagerLazyDemo {
                     session.get(Instructor.class, id);
 
             System.out.println("MyApp: Instructor: " + instructor);
+
             // get courses for the instructor
             System.out.println("MyApp: Courses: " + instructor.getCourses());
 
