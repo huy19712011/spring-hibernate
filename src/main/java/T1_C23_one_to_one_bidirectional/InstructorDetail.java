@@ -33,9 +33,16 @@ public class InstructorDetail implements Serializable {
     @Column(name = "hobby")
     private String hobby;
 
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+//    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    // do not delete instructor
+    @OneToOne(mappedBy = "instructorDetail",
+            cascade = {
+                CascadeType.DETACH,
+                CascadeType.MERGE,
+                CascadeType.PERSIST,
+                CascadeType.REFRESH,
+            })
     private Instructor instructor;
-
 
     public InstructorDetail() {
     }
@@ -77,12 +84,9 @@ public class InstructorDetail implements Serializable {
         this.instructor = instructor;
     }
 
-
-
     @Override
     public String toString() {
         return "InstructorDetail{" + "id=" + id + ", youtubeChannel=" + youtubeChannel + ", hobby=" + hobby + '}';
     }
-
 
 }

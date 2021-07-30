@@ -37,7 +37,7 @@ public class MainDeleteOneToOneBi {
             session.beginTransaction();
 
             // get the instructor-detail object
-            int id = 2;
+            int id = 5;
             InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
             System.out.println("instructorDetail: " + instructorDetail);
 
@@ -46,6 +46,10 @@ public class MainDeleteOneToOneBi {
 
             // delete objects
             System.out.println("Deleting instructorDetail: " + instructorDetail);
+
+            // remove associated object reference before delete object
+            instructorDetail.getInstructor().setInstructorDetail(null);
+
             session.delete(instructorDetail);
 
             // commit transaction
