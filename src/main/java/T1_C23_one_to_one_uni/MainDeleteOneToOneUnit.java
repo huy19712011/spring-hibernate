@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author huynq
  */
-public class MainCreateOneToOneUni {
+public class MainDeleteOneToOneUnit {
 
     /**
      * @param args the command line arguments
@@ -33,23 +33,21 @@ public class MainCreateOneToOneUni {
 
         try {
 
-            // create objects
-            Instructor tempInstructor
-                    = new Instructor("John", "Doe", "jdoe@gmail.com");
-
-            InstructorDetail tempInstructorDetail
-                    = new InstructorDetail("http://www.youtube", "Love to code");
-
-            // associate the objects
-            tempInstructor.setInstructorDetail(tempInstructorDetail);
-
             // start a transaction
             session.beginTransaction();
 
-            // save the instructor
-            // Note: this will also save the details object
-            System.out.println("Saving instructor: " + tempInstructor);
-            session.save(tempInstructor);
+            // get instructor by id
+            int id = 3;
+            Instructor instructor = session.get(Instructor.class, id);
+            System.out.println("Found instructor: " + instructor);
+
+            // delete
+            if (instructor != null) {
+                System.out.println("Deleting: " + instructor);
+
+                // also delete "details" because CascadeType.All
+                session.delete(instructor);
+            }
 
             // commit transaction
             session.getTransaction().commit();
