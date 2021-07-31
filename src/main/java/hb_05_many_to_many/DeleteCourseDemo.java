@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author huynq
  */
-public class GetCoursesForStudent {
+public class DeleteCourseDemo {
 
     /**
      * @param args the command line arguments
@@ -39,11 +39,13 @@ public class GetCoursesForStudent {
             // start a transaction
             session.beginTransaction();
 
-            // get the student from db
-            int id = 2;
-            Student student = session.get(Student.class, id);
-            System.out.println("Loaded student: " + student);
-            System.out.println("Courses: " + student.getCourses());
+            // get the course from db
+            int id = 10;
+            Course course = session.get(Course.class, id);
+
+            // delete the course
+            System.out.println("Deleting course: " + course);
+            session.delete(course);
 
             // commit transaction
             session.getTransaction().commit();
