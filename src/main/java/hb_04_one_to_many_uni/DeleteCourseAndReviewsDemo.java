@@ -13,7 +13,7 @@ import org.hibernate.cfg.Configuration;
  *
  * @author huynq
  */
-public class CreateCourseAndReviewsDemo {
+public class DeleteCourseAndReviewsDemo {
 
     /**
      * @param args the command line arguments
@@ -38,19 +38,19 @@ public class CreateCourseAndReviewsDemo {
             // start a transaction
             session.beginTransaction();
 
-            // create a course
-            Course course = new Course("JavaScript and TypeScript");
+            // get the course
+            int id = 10;
+            Course course = session.get(Course.class, id);
 
-            // add some reviews
-            course.addReview(new Review("comment 1"));
-            course.addReview(new Review("comment 2"));
-            course.addReview(new Review("comment 3"));
-
-            // save the course, -> also save reviews
-            System.out.println("Saving the course...");
+            //
+            System.out.println("Deleting the course ...");
             System.out.println(course);
+
+            //
             System.out.println(course.getReviews());
-            session.save(course);
+
+            // delete the course -> also delete reviews
+            session.delete(course);
 
 
             // commit transaction
