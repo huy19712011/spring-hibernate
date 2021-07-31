@@ -46,17 +46,7 @@ public class GetCoursesForStudent {
             System.out.println("Courses: " + student.getCourses());
 
             // create more courses
-            Course course1 = new Course("course 1");
-            Course course2 = new Course("course 2");
-
-            // add student to courses
-            course1.addStudent(student);
-            course2.addStudent(student);
-
-            // save the courses
-            System.out.println("Saving the courses ...");
-            session.save(course1);
-            session.save(course2);
+            
 
             // commit transaction
             session.getTransaction().commit();
